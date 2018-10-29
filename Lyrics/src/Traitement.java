@@ -8,6 +8,7 @@ public class Traitement {
 	private static final char NoBreakSpace = "\u00A0".charAt(0);
 
 	private static Map<String, String> replacements = null;
+	private static Map<String, String> optimizations = null;
 
 	public static void init() {
 		replacements = new HashMap<String, String>();
@@ -17,8 +18,29 @@ public class Traitement {
 		replacements.put("ō", "ou");
 		replacements.put("ū", "uu");
 		replacements.put("　", " ");
+		
+		optimizations = new HashMap<String, String>();
+		// Voyelles
+		optimizations.put("a/a",  "aa");
+		optimizations.put("a/i",  "ai");
+		optimizations.put("i/i",  "ii");
+		optimizations.put("u/u",  "uu");
+		optimizations.put("e/i",  "ei");
+		optimizations.put("o/u",  "ou");
+		// Consonnes
+		optimizations.put("/([zrtpmkhgdcb])/\\1",  "$1/$1"); // Enlever une sync du sokuon
+		optimizations.put(" t/te",  " tte"); // Cas spécial du tte isolé
+		optimizations.put("[/ ]n([^aeiou])",  "n$1");	// Si un mot commence par un n isolé on l'attache au mot d'avant pour raboter une sync
 	}
 
+	public static String optimize(String in) {
+		String out = in;
+		for (String k : optimizations.keySet()) {
+			out = out.replaceAll(k.toLowerCase(), optimizations.get(k).toLowerCase());
+			out = out.replaceAll(k.toUpperCase(), optimizations.get(k).toUpperCase());
+		}
+		return out;
+	}
 	private static String applyReplacements(String str) {
 		String res = str;
 		for (String k : replacements.keySet()) {

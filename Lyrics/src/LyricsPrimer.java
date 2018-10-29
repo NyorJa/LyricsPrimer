@@ -66,8 +66,19 @@ public class LyricsPrimer {
             	sourceSP.getVerticalScrollBar().setModel(unifiedModel);
             }
         });
+        
+        JButton theSecondButton = new JButton("Yamete ça va trop vite!");
+        theSecondButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent event) {
+            	destText.setText(Traitement.optimize((String)destText.getText()));
+//            	destText.setCaretPosition(0);
+//            	sourceSP.getVerticalScrollBar().setModel(unifiedModel);
+            }
+        });
 
         buttonPanel.add(theButton);
+        buttonPanel.add(theSecondButton);
         window.add((Component)sourceTextPanel, "West");
         window.add((Component)destTextPanel, "East");
         window.add((Component)buttonPanel, "South");
