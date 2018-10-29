@@ -72,7 +72,7 @@ public class LyricsPrimer {
             @Override
             public void actionPerformed(ActionEvent event) {
             	destText.setText(Traitement.optimize((String)destText.getText()));
-//            	destText.setCaretPosition(0);
+            	destText.setCaretPosition(0);
 //            	sourceSP.getVerticalScrollBar().setModel(unifiedModel);
             }
         });
