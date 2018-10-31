@@ -461,4 +461,27 @@ public class Traitement {
 		return CharType.OTHER;
 	}
 
+
+	public static String splitThatShit(String text) {
+		if (text==null) return "";
+		int cursor = -1;
+		int cursor2 = text.indexOf('(', cursor);
+		String main = "";
+		String chorus = "";
+		String newLine;
+		while (cursor2>=0) {
+			main += text.substring(cursor+1, cursor2);
+			cursor = text.indexOf(')', cursor2);
+			if (cursor<0) return ("INVALID CHORUS");
+			newLine = text.substring(cursor2+1, cursor);
+			if (!newLine.isEmpty()) {
+				chorus += "\n"+String.valueOf(Character.toUpperCase(newLine.charAt(0)))+newLine.substring(1);
+			}
+			cursor2 = text.indexOf('(', cursor);
+		}
+		main += text.substring(cursor+1);
+		
+		if (chorus.isEmpty()) return text;
+		return main+"\n\n***CHORUS START***\n"+chorus;
+	}
 }
