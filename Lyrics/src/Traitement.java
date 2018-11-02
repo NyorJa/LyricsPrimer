@@ -21,12 +21,13 @@ public class Traitement {
 		
 		optimizations = new HashMap<String, String>();
 		// Voyelles
-		optimizations.put("a/a",  "aa");
+//		optimizations.put("a/a",  "aa");
 		optimizations.put("a/i",  "ai");
-		optimizations.put("i/i",  "ii");
-		optimizations.put("u/u",  "uu");
+//		optimizations.put("i/i",  "ii");
+//		optimizations.put("u/u",  "uu");
 		optimizations.put("e/i",  "ei");
 		optimizations.put("o/u",  "ou");
+		optimizations.put("([aiueo])/\\1", "$1$1");
 		// Consonnes
 		optimizations.put("/([zrtpmkhgdcb])/\\1",  "$1/$1"); // Enlever une sync du sokuon
 		optimizations.put(" t/te",  " tte"); // Cas spécial du tte isolé
