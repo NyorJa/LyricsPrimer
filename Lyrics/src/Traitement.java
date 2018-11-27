@@ -18,20 +18,21 @@ public class Traitement {
 		replacements.put("ō", "ou");
 		replacements.put("ū", "uu");
 		replacements.put("　", " ");
-		
+
 		optimizations = new HashMap<String, String>();
 		// Voyelles
 //		optimizations.put("a/a",  "aa");
-		optimizations.put("a/i",  "ai");
+		optimizations.put("a/i", "ai");
 //		optimizations.put("i/i",  "ii");
 //		optimizations.put("u/u",  "uu");
-		optimizations.put("e/i",  "ei");
-		optimizations.put("o/u",  "ou");
+		optimizations.put("e/i", "ei");
+		optimizations.put("o/u", "ou");
 		optimizations.put("([aiueo])/\\1", "$1$1");
 		// Consonnes
-		optimizations.put("/([zrtpmkhgdcb])/\\1",  "$1/$1"); // Enlever une sync du sokuon
-		optimizations.put(" t/te",  " tte"); // Cas spécial du tte isolé
-		optimizations.put("[/ ]n([^aeiou])",  "n$1");	// Si un mot commence par un n isolé on l'attache au mot d'avant pour raboter une sync
+		optimizations.put("/([zrtpmkhgdcb])/\\1", "$1/$1"); // Enlever une sync du sokuon
+		optimizations.put(" t/te", " tte"); // Cas spécial du tte isolé
+		optimizations.put("[/ ]n([^aeiou])", "n$1"); // Si un mot commence par un n isolé on l'attache au mot d'avant
+														// pour raboter une sync
 	}
 
 	public static String optimize(String in) {
@@ -42,6 +43,7 @@ public class Traitement {
 		}
 		return out;
 	}
+
 	private static String applyReplacements(String str) {
 		String res = str;
 		for (String k : replacements.keySet()) {
@@ -357,6 +359,7 @@ public class Traitement {
 		if (Character.isWhitespace(character)) {
 			return CharType.WHITESPACE;
 		}
+		
 		switch (Character.toLowerCase(character)) {
 		case '0':
 		case '1':
@@ -410,6 +413,8 @@ public class Traitement {
 		case ':':
 		case '\'':
 		case ';':
+//		case '一':
+		case 'ー':
 			return CharType.LINK;
 
 		case '(':
@@ -434,7 +439,6 @@ public class Traitement {
 		case '.':
 		case '。':
 		case '…':
-		case '一':
 		case '、':
 		case ',':
 			return CharType.PONCTUATION;
@@ -462,27 +466,29 @@ public class Traitement {
 		return CharType.OTHER;
 	}
 
-
 	public static String splitThatShit(String text) {
-		if (text==null) return "";
+		if (text == null)
+			return "";
 		int cursor = -1;
 		int cursor2 = text.indexOf('(', cursor);
 		String main = "";
 		String chorus = "";
 		String newLine;
-		while (cursor2>=0) {
-			main += text.substring(cursor+1, cursor2);
+		while (cursor2 >= 0) {
+			main += text.substring(cursor + 1, cursor2);
 			cursor = text.indexOf(')', cursor2);
-			if (cursor<0) return ("INVALID CHORUS");
-			newLine = text.substring(cursor2+1, cursor);
+			if (cursor < 0)
+				return ("INVALID CHORUS");
+			newLine = text.substring(cursor2 + 1, cursor);
 			if (!newLine.isEmpty()) {
-				chorus += "\n"+String.valueOf(Character.toUpperCase(newLine.charAt(0)))+newLine.substring(1);
+				chorus += "\n" + String.valueOf(Character.toUpperCase(newLine.charAt(0))) + newLine.substring(1);
 			}
 			cursor2 = text.indexOf('(', cursor);
 		}
-		main += text.substring(cursor+1);
-		
-		if (chorus.isEmpty()) return text;
-		return main+"\n\n***CHORUS START***\n"+chorus;
+		main += text.substring(cursor + 1);
+
+		if (chorus.isEmpty())
+			return text;
+		return main + "\n\n***CHORUS START***\n" + chorus;
 	}
 }
