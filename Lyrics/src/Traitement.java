@@ -29,7 +29,7 @@ public class Traitement {
 		optimizations.put("o/u", "ou");
 		optimizations.put("([aiueo])/\\1", "$1$1");
 		// Consonnes
-		optimizations.put("/([zrtpmkhgdcb])/\\1", "$1/$1"); // Enlever une sync du sokuon
+		optimizations.put("/([zrtpmｓkhgdcb])/\\1", "$1/$1"); // Enlever une sync du sokuon
 		optimizations.put(" t/te", " tte"); // Cas spécial du tte isolé
 		optimizations.put("[/ ]n([^aeiou])", "n$1"); // Si un mot commence par un n isolé on l'attache au mot d'avant
 														// pour raboter une sync
@@ -427,6 +427,10 @@ public class Traitement {
 		case '`':
 		case '“':
 		case '”':
+		case '（':
+		case '〉':
+		case '【':
+		case '】':
 			return CharType.BRACKET;
 
 		case ' ':
@@ -441,6 +445,8 @@ public class Traitement {
 		case '…':
 		case '、':
 		case ',':
+		case '♡':
+			
 			return CharType.PONCTUATION;
 
 		case 'ッ':
