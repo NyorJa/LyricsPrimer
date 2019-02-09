@@ -1,7 +1,13 @@
 
 import java.lang.Character.UnicodeBlock;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Traitement {
 	private static final char Separateur = '/';
@@ -29,19 +35,56 @@ public class Traitement {
 		optimizations.put("o/u", "ou");
 		optimizations.put("([aiueo])/\\1", "$1$1");
 		// Consonnes
-		optimizations.put("/([zrtpmｓkhgdcb])/\\1", "$1/$1"); // Enlever une sync du sokuon
+		optimizations.put("/([zrtpmskhgdcb])/\\1", "$1/$1"); // Enlever une sync du sokuon
 		optimizations.put(" t/te", " tte"); // Cas spécial du tte isolé
 		optimizations.put("[/ ]n([^aeiou])", "n$1"); // Si un mot commence par un n isolé on l'attache au mot d'avant
 														// pour raboter une sync
 	}
 
 	public static String optimize(String in) {
-		String out = in;
+		String lcStr = in;
 		for (String k : optimizations.keySet()) {
-			out = out.replaceAll(k.toLowerCase(), optimizations.get(k).toLowerCase());
-			out = out.replaceAll(k.toUpperCase(), optimizations.get(k).toUpperCase());
+			lcStr = lcStr.replaceAll(k.toLowerCase(), optimizations.get(k).toLowerCase());
+			lcStr = lcStr.replaceAll(k.toUpperCase(), optimizations.get(k).toUpperCase());
 		}
-		return out;
+		return lcStr;
+		
+		/*
+		// Consts de commodité
+		final Integer SLASH = 0;
+		final Integer LOWER = 1;
+		final Integer UPPER = 2;
+		final Integer OTHER = -1;
+
+		// On mappe la casse pour reconstruire apres
+		List<Integer> casseMap = in.chars().sequential().boxed().map(c -> {
+			if (c == "/".codePointAt(0)) {
+				return SLASH;
+			} else if (Character.isLowerCase(c)) {
+				return LOWER;
+			} else if (Character.isUpperCase(c)) {
+				return UPPER;
+			} else {
+				return OTHER;
+			}
+		}).collect(Collectors.toList());
+
+		String lcStr = in.toLowerCase();
+
+		for (String k : optimizations.keySet()) {
+			Pattern pat = Pattern.compile(k);
+			Matcher mat = pat.matcher(lcStr);
+			while (mat.find()) {
+				lcStr = lcStr.replaceFirst(k, optimizations.get(k));
+				if (k.length() > k.replace("/", "").length()) {
+					casseMap.remove(mat.start() + casseMap.subList(mat.start(), mat.end()).indexOf(SLASH));
+				}
+			}
+			lcStr = lcStr.replaceAll(k.toLowerCase(), optimizations.get(k).toLowerCase());
+		}
+		
+		*/
+		
 	}
 
 	private static String applyReplacements(String str) {
@@ -359,7 +402,7 @@ public class Traitement {
 		if (Character.isWhitespace(character)) {
 			return CharType.WHITESPACE;
 		}
-		
+
 		switch (Character.toLowerCase(character)) {
 		case '0':
 		case '1':
@@ -446,7 +489,7 @@ public class Traitement {
 		case '、':
 		case ',':
 		case '♡':
-			
+
 			return CharType.PONCTUATION;
 
 		case 'ッ':
