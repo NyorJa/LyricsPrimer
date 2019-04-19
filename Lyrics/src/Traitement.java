@@ -131,7 +131,8 @@ public class Traitement {
 				case WHITESPACE:
 				case BRACKET:
 					if (previousLCChar == '\n' || i == 0) {
-						currentSyllable.append(Character.toUpperCase(character));
+//						currentSyllable.append(Character.toUpperCase(character));
+						currentSyllable.append(character);
 						break block0;
 					}
 					currentSyllable.append(character);
@@ -164,7 +165,8 @@ public class Traitement {
 				case WHITESPACE:
 				case BRACKET:
 					if (previousLCChar == '\n' || i == 0) {
-						currentSyllable.append(Character.toUpperCase(character));
+//						currentSyllable.append(Character.toUpperCase(character));
+						currentSyllable.append(character);
 						break block0;
 					}
 					currentSyllable.append(character);
