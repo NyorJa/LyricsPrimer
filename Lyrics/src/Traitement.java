@@ -18,11 +18,11 @@ public class Traitement {
 
 	public static void init() {
 		replacements = new HashMap<String, String>();
-		replacements.put("ā", "aa");
-		replacements.put("ē", "ei");
-		replacements.put("ī", "ii");
-		replacements.put("ō", "ou");
-		replacements.put("ū", "uu");
+		replacements.put("[āâ]", "aa");
+		replacements.put("[ēê]", "ei");
+		replacements.put("[īî]", "ii");
+		replacements.put("[ōô]", "ou");
+		replacements.put("[ūû]", "uu");
 		replacements.put("　", " ");
 
 		optimizations = new HashMap<String, String>();
