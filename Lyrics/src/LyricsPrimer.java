@@ -24,7 +24,7 @@ public class LyricsPrimer {
 	public LyricsPrimer() {
 		JFrame window = new JFrame();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setTitle("LyricsPrimer v2.8");
+		window.setTitle("LyricsPrimer v2.9");
 		window.setResizable(true);
 
 		JPanel sourceTextPanel = new JPanel();
