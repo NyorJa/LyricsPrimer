@@ -46,7 +46,7 @@ public class LyricsPrimer {
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		destTextPanel.add(destSP);
 
-		// Tenta de sync les deux mais ça fait juste des problèmes
+		// Tenta de sync les deux mais ï¿½a fait juste des problï¿½mes
 		BoundedRangeModel unifiedModel = new DefaultBoundedRangeModel();
 		unifiedModel.setRangeProperties(sourceSP.getVerticalScrollBar().getModel().getValue(),
 				sourceSP.getVerticalScrollBar().getModel().getExtent(),
@@ -67,7 +67,7 @@ public class LyricsPrimer {
 			}
 		});
 
-		JButton theSecondButton = new JButton("Yamete ça va trop vite !");
+		JButton theSecondButton = new JButton("Yamete Ã§a va trop vite !");
 		theSecondButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {

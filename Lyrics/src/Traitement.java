@@ -521,7 +521,7 @@ public class Traitement {
 				return ("INVALID CHORUS");
 			newLine = text.substring(cursor2 + 1, cursor);
 			if (!newLine.isEmpty()) {
-				chorus += "\n" + String.valueOf(Character.toUpperCase(newLine.charAt(0))) + newLine.substring(1);
+				chorus += "\n" + String.valueOf(newLine.charAt(0)) + newLine.substring(1);
 			}
 			cursor2 = text.indexOf('(', cursor);
 		}
@@ -529,6 +529,6 @@ public class Traitement {
 
 		if (chorus.isEmpty())
 			return text;
-		return main + "\n\n***CHORUS START***\n" + chorus;
+		return (main + "\n\n***CHORUS START***\n" + chorus).replaceAll("  +", " ");
 	}
 }
