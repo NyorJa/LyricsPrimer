@@ -443,11 +443,9 @@ public class Traitement {
 			return CharType.ROMAJI_CONSONANT;
 
 		case '-':
-//			case '~':
 		case ':':
 		case '\'':
 		case ';':
-//		case '一':
 		case 'ー':
 			return CharType.LINK;
 
@@ -461,6 +459,8 @@ public class Traitement {
 		case '`':
 		case '“':
 		case '”':
+		case '‘':
+		case '’':
 		case '（':
 		case '〉':
 		case '【':
