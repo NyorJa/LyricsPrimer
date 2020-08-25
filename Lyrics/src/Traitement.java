@@ -1,13 +1,7 @@
 
 import java.lang.Character.UnicodeBlock;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Traitement {
 	private static final char Separateur = '/';
@@ -37,7 +31,7 @@ public class Traitement {
 		// Consonnes
 		optimizations.put("/([zrtpmskhgdcb])/\\1", "$1/$1"); // Enlever une sync du sokuon
 		optimizations.put(" t/t", " tt"); // Cas spécial du tte isolé
-		optimizations.put("[/ ]n([^aeiou])", "n$1"); // Si un mot commence par un n isolé on l'attache au mot d'avant
+		optimizations.put("[/ ]n([^aeiouy])", "n$1"); // Si un mot commence par un n isolé on l'attache au mot d'avant
 														// pour raboter une sync
 	}
 
