@@ -1,3 +1,4 @@
+package fr.enssat.dysp.lyrics;
 
 import java.lang.Character.UnicodeBlock;
 import java.util.HashMap;
