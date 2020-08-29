@@ -13,10 +13,15 @@ public class Traitement {
 	public static void init() {
 		replacements = new HashMap<String, String>();
 		replacements.put("[āâ]", "aa");
+		replacements.put("[ĀÂ]", "Aa");
 		replacements.put("[ēê]", "ei");
+		replacements.put("[ĒÊ]", "Ei");
 		replacements.put("[īî]", "ii");
+		replacements.put("[ĪÎ]", "Ii");
 		replacements.put("[ōô]", "ou");
+		replacements.put("[ŌÔ]", "Ou");
 		replacements.put("[ūû]", "uu");
+		replacements.put("[ŪÛ]", "Uu");
 		replacements.put("　", " ");
 
 		optimizations = new HashMap<String, String>();
