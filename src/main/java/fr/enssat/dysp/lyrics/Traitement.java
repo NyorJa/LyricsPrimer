@@ -448,6 +448,7 @@ public class Traitement {
 		case '\'':
 		case ';':
 		case 'ー':
+		case '・':
 			return CharType.LINK;
 
 		case '(':
