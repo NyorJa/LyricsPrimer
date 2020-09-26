@@ -2,8 +2,6 @@ package fr.enssat.dysp.lyrics;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoundedRangeModel;
@@ -21,7 +19,6 @@ public class LyricsPrimer {
 		Traitement.init();
 		new LyricsPrimer();
 	}
-
 
 	public LyricsPrimer() {
 		JFrame window = new JFrame();
@@ -56,45 +53,30 @@ public class LyricsPrimer {
 				sourceSP.getVerticalScrollBar().getModel().getMaximum(),
 				sourceSP.getVerticalScrollBar().getModel().getValueIsAdjusting());
 		destSP.getVerticalScrollBar().setModel(unifiedModel);
-		// sourceSP.getVerticalScrollBar().setModel(unifiedModel);
 
 		JPanel buttonPanel = new JPanel();
 		JButton theButton = new JButton("Go!");
-		theButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
+		theButton.addActionListener(event -> {
 				destText.setText(Traitement.traiter((String) sourceText.getText()));
 				destText.setCaretPosition(0);
 				sourceSP.getVerticalScrollBar().setModel(unifiedModel);
-			}
 		});
 
 		JButton theSecondButton = new JButton("Yamete ça va trop vite !");
-		theSecondButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
+		theSecondButton.addActionListener(event -> {
 				destText.setText(Traitement.optimize((String) destText.getText()));
 				destText.setCaretPosition(0);
-//            	sourceSP.getVerticalScrollBar().setModel(unifiedModel);
-			}
 		});
 
 		JButton theOtherSecondButton = new JButton("Extract chorus!");
-		theOtherSecondButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
+		theOtherSecondButton.addActionListener(event -> {
 				destText.setText(Traitement.splitThatShit((String) destText.getText()));
 				destText.setCaretPosition(0);
-//            	sourceSP.getVerticalScrollBar().setModel(unifiedModel);
-			}
 		});
 
 		buttonPanel.add(theButton);
 		buttonPanel.add(theSecondButton);
 		buttonPanel.add(theOtherSecondButton);
-
-
-
 
         window.add((Component)sourceTextPanel, "West");
         window.add((Component)destTextPanel, "East");
@@ -105,7 +87,6 @@ public class LyricsPrimer {
         window.setMinimumSize(window.getSize());
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
-
 	}
 
 }

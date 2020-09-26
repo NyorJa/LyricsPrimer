@@ -53,28 +53,6 @@ public class Traitement {
 			lcStr = lcStr.replaceAll(tcReg, tcTarget);
 		}
 		return lcStr;
-
-		/*
-		 * // Consts de commodité final Integer SLASH = 0; final Integer LOWER = 1;
-		 * final Integer UPPER = 2; final Integer OTHER = -1;
-		 * 
-		 * // On mappe la casse pour reconstruire apres List<Integer> casseMap =
-		 * in.chars().sequential().boxed().map(c -> { if (c == "/".codePointAt(0)) {
-		 * return SLASH; } else if (Character.isLowerCase(c)) { return LOWER; } else if
-		 * (Character.isUpperCase(c)) { return UPPER; } else { return OTHER; }
-		 * }).collect(Collectors.toList());
-		 * 
-		 * String lcStr = in.toLowerCase();
-		 * 
-		 * for (String k : optimizations.keySet()) { Pattern pat = Pattern.compile(k);
-		 * Matcher mat = pat.matcher(lcStr); while (mat.find()) { lcStr =
-		 * lcStr.replaceFirst(k, optimizations.get(k)); if (k.length() > k.replace("/",
-		 * "").length()) { casseMap.remove(mat.start() + casseMap.subList(mat.start(),
-		 * mat.end()).indexOf(SLASH)); } } lcStr = lcStr.replaceAll(k.toLowerCase(),
-		 * optimizations.get(k).toLowerCase()); }
-		 * 
-		 */
-
 	}
 
 	private static String applyReplacements(String str) {
@@ -86,7 +64,9 @@ public class Traitement {
 	}
 
 	public enum CharType {
-		ROMAJI_VOWEL, ROMAJI_CONSONANT, KANA, KANJI, SOKUON, SMALL_KANA, LINK, WHITESPACE, BRACKET, PONCTUATION, NUMBER,
+		ROMAJI_VOWEL, ROMAJI_CONSONANT, 
+		KANA, KANJI, SOKUON, SMALL_KANA, 
+		LINK, WHITESPACE, BRACKET, PONCTUATION, NUMBER,
 		OTHER;
 	}
 
@@ -95,7 +75,6 @@ public class Traitement {
 			return "";
 		}
 		lyrics = applyReplacements(lyrics);
-		// lyrics = Traitement.cleanWaO(lyrics);
 		StringBuffer currentSyllable = new StringBuffer();
 		StringBuffer result = new StringBuffer();
 		char previousLCChar = ' ';
@@ -146,7 +125,7 @@ public class Traitement {
 					// if (/* previousLCChar != 'n' && */ LCcharacter != previousLCChar) {
 					if ((previousLCChar != 'n' && LCcharacter != previousLCChar)
 							|| (previousLCChar == 'n' && LCcharacter == 'y')) { // Je crois que ce truc là sert juste a
-																				// écrite les tsu shi chi
+																				// écrire les tsu shi chi
 						currentSyllable.append(character);
 						break block0;
 					}
@@ -482,7 +461,6 @@ public class Traitement {
 		case '、':
 		case ',':
 		case '♡':
-
 			return CharType.PONCTUATION;
 
 		case 'ッ':
