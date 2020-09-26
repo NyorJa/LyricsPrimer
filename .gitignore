@@ -3,3 +3,13 @@
 
 # Ignore Gradle build output directory
 build
+bin/main/Modèle graph.properties
+bin/main/fr/enssat/dysp/lyrics/LyricsPrimer.class
+bin/main/fr/enssat/dysp/lyrics/LyricsPrimer$1.class
+bin/main/fr/enssat/dysp/lyrics/LyricsPrimer$2.class
+bin/main/fr/enssat/dysp/lyrics/LyricsPrimer$3.class
+bin/main/fr/enssat/dysp/lyrics/Traitement.class
+bin/main/fr/enssat/dysp/lyrics/Traitement$CharType.class
+.settings/org.eclipse.buildship.core.prefs
+.project
+.classpath
