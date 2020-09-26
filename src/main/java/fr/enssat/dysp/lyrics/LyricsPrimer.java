@@ -78,13 +78,13 @@ public class LyricsPrimer {
 		buttonPanel.add(theSecondButton);
 		buttonPanel.add(theOtherSecondButton);
 
-        window.add((Component)sourceTextPanel, "West");
-        window.add((Component)destTextPanel, "East");
-        window.add((Component)buttonPanel, "South");
+		window.add((Component)sourceTextPanel, "West");
+		window.add((Component)destTextPanel, "East");
+		window.add((Component)buttonPanel, "South");
 
 		window.pack();
 		
-        window.setMinimumSize(window.getSize());
+		window.setMinimumSize(window.getSize());
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 	}
