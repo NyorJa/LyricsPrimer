@@ -75,8 +75,8 @@ public class Traitement {
 			return "";
 		}
 		lyrics = applyReplacements(lyrics);
-		StringBuffer currentSyllable = new StringBuffer();
-		StringBuffer result = new StringBuffer();
+		StringBuilder currentSyllable = new StringBuilder();
+		StringBuilder result = new StringBuilder();
 		char previousLCChar = ' ';
 		char nextLCChar = 'a';
 		int i = 0;
@@ -105,7 +105,7 @@ public class Traitement {
 				case NUMBER:
 				case OTHER:
 					result.append(currentSyllable.toString());
-					currentSyllable = new StringBuffer();
+					currentSyllable = new StringBuilder();
 					currentSyllable.append(Separateur).append(character);
 					break block0;
 				case WHITESPACE:
@@ -139,7 +139,7 @@ public class Traitement {
 				case NUMBER:
 				case OTHER:
 					result.append(currentSyllable.toString());
-					currentSyllable = new StringBuffer();
+					currentSyllable = new StringBuilder();
 					currentSyllable.append(Separateur).append(character);
 					break block0;
 				case WHITESPACE:
@@ -160,7 +160,7 @@ public class Traitement {
 				}
 				case SMALL_KANA: {
 					result.append(currentSyllable.toString());
-					currentSyllable = new StringBuffer();
+					currentSyllable = new StringBuilder();
 					currentSyllable.append(Separateur).append(character);
 					break block0;
 				}
@@ -173,7 +173,7 @@ public class Traitement {
 				case NUMBER:
 				case OTHER: {
 					result.append(currentSyllable.toString());
-					currentSyllable = new StringBuffer();
+					currentSyllable = new StringBuilder();
 					currentSyllable.append(Separateur).append(character);
 					break block0;
 				}
@@ -199,7 +199,7 @@ public class Traitement {
 				case NUMBER:
 				case OTHER:
 					result.append(currentSyllable.toString());
-					currentSyllable = new StringBuffer();
+					currentSyllable = new StringBuilder();
 					currentSyllable.append(Separateur).append(character);
 					break block0;
 				case WHITESPACE:
@@ -224,7 +224,7 @@ public class Traitement {
 				case NUMBER:
 				case OTHER:
 					result.append(currentSyllable.toString());
-					currentSyllable = new StringBuffer();
+					currentSyllable = new StringBuilder();
 					currentSyllable.append(Separateur).append(character);
 					break block0;
 				case WHITESPACE:
@@ -276,7 +276,7 @@ public class Traitement {
 					break;
 				case LINK:
 					result.append(currentSyllable.toString());
-					currentSyllable = new StringBuffer();
+					currentSyllable = new StringBuilder();
 					currentSyllable.append(Separateur).append(character);
 					break block0;
 				case WHITESPACE:
@@ -295,7 +295,7 @@ public class Traitement {
 
 				}
 				result.append(currentSyllable.toString());
-				currentSyllable = new StringBuffer();
+				currentSyllable = new StringBuilder();
 				result.append(Character.toChars(character));
 
 				break;
@@ -312,7 +312,7 @@ public class Traitement {
 				case NUMBER:
 				case OTHER:
 					result.append(currentSyllable.toString());
-					currentSyllable = new StringBuffer();
+					currentSyllable = new StringBuilder();
 					currentSyllable.append(character);
 					break block0;
 
@@ -327,7 +327,7 @@ public class Traitement {
 				break;
 			case OTHER:
 				result.append(currentSyllable.toString());
-				currentSyllable = new StringBuffer();
+				currentSyllable = new StringBuilder();
 				if (previousLCChar != '\n' && i != 0) {
 					currentSyllable.append(Separateur);
 				}
@@ -335,7 +335,7 @@ public class Traitement {
 				break block0;
 			case BRACKET:
 				result.append(currentSyllable.toString());
-				currentSyllable = new StringBuffer();
+				currentSyllable = new StringBuilder();
 				result.append(Character.toChars(character));
 				break;
 			case NUMBER:
@@ -357,7 +357,7 @@ public class Traitement {
 				case BRACKET:
 					// Le reste du temps on romp la syllabe et on part sur une nouvelle
 					result.append(currentSyllable.toString());
-					currentSyllable = new StringBuffer();
+					currentSyllable = new StringBuilder();
 					currentSyllable.append(character);
 
 				}
