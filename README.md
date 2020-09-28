@@ -26,7 +26,7 @@ You can run the declared replacements with the middle button and the right butto
 
 ## How to build
 
-I've added gradle to the project to ease the build process. Make sure you have an installed JRE (1.8 or later) that gradle can use and simply run
+I've added gradle to the project to ease the build process. Make sure you have an installed JDK (1.8 or later) that gradle can use and simply run
 ```bash
 ./gradlew build
 ```
