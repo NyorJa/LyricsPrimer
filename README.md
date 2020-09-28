@@ -19,7 +19,7 @@ java -jar LyricsPrimer.jar
 ./gradlew run
 ```
 
-TODO app screenshot
+![image](https://i.imgur.com/CCgr46X.png)
 
 Once the application window is open, you'll see 2 big panels. Paste your lyrics in the left one, click the leftmost button and get your split text from the right panel.  
 You can run the declared replacements with the middle button and the right button will remove any (text between parentheses) from the main output and append it as a 'Chorus' lyrics.
