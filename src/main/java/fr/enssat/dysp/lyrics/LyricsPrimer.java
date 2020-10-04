@@ -29,7 +29,7 @@ public class LyricsPrimer {
 		JPanel sourceTextPanel = new JPanel();
 		sourceTextPanel.setBorder(BorderFactory.createTitledBorder("In"));
 		final JTextPane sourceText = new JTextPane();
-		sourceText.setPreferredSize(new Dimension(600, 800));
+		sourceText.setPreferredSize(new Dimension(450, 600));
 		((DefaultCaret) sourceText.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		JScrollPane sourceSP = new JScrollPane(sourceText, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -39,7 +39,7 @@ public class LyricsPrimer {
 		destTextPanel.setBorder(BorderFactory.createTitledBorder("Out"));
 		final JTextPane destText = new JTextPane();
 		destText.setEditable(false);
-		destText.setPreferredSize(new Dimension(600, 800));
+		destText.setPreferredSize(new Dimension(450, 600));
 		((DefaultCaret) destText.getCaret()).setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		JScrollPane destSP = new JScrollPane(destText, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
