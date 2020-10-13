@@ -12,12 +12,26 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
+    id 'jacoco'
 }
 
 compileJava   {
   options.encoding = 'UTF-8'
   sourceCompatibility = '1.8'
   targetCompatibility = '1.8'
+}
+
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/jacoco")
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+jacocoTestReport {
+    dependsOn test
 }
 
 repositories {
@@ -28,6 +42,7 @@ repositories {
 
 dependencies {
     // standalone
+    testCompile 'junit:junit:4.12'
 }
 
 application {
