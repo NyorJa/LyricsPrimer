@@ -21,6 +21,9 @@ compileJava   {
   targetCompatibility = '1.8'
 }
 
+dependencies {
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+}
 
 jacoco {
     toolVersion = "0.8.5"
@@ -29,7 +32,15 @@ jacoco {
 
 test {
     finalizedBy jacocoTestReport
+    systemProperty "file.encoding", "UTF-8"
 }
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+tasks.withType(Test) {
+    systemProperty "file.encoding", "UTF-8"
+}
+
 jacocoTestReport {
     dependsOn test
 }

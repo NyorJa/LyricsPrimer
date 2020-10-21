@@ -1,35 +1,81 @@
 package fr.enssat.dysp.lyrics;
 
-import org.junit.Assert;
-import org.junit.Before;
+import org.apache.commons.io.IOUtils;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+
+import static org.junit.Assert.assertEquals;
 
 public class TraitementTest {
 
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         Traitement.init();
     }
 
     @Test
-    public void testInit() {
-        Assert.assertEquals("SAMPLE", Traitement.optimize("SAMPLE"));
+    public void testTraiter_EvangelionSplitFullKanji() {
+
+        String inputContent = extractFromResource("in/EvangelionOPFullKanji.sample");
+        String expectedContent = extractFromResource("out/EvangelionOPFullKanji.split.sample");
+
+        String actual = Traitement.traiter(inputContent);
+
+        assertEquals(actual, expectedContent);
+
     }
 
     @Test
-    public void testTraiter() {
-        String lyrics = "hello, again its you and me! 123 go! abc@abc.com:)♡っョ わたしはにほんへいきます ロシア 语大字典";
-        String actual = Traitement.traiter(lyrics);
-        Assert.assertTrue(actual.contains("/"));
+    public void testTraiter_EvangelionSplitFullRomaji() {
 
+        String inputContent = extractFromResource("in/EvangelionOPFullRomaji.sample");
+        String expectedContent = extractFromResource("out/EvangelionOPFullRomaji.split.sample");
+
+        String actual = Traitement.traiter(inputContent);
+
+        assertEquals(actual, expectedContent);
     }
 
     @Test
-    public void testSplitThatShit() {
-        String text = "split that shit";
-        String actual = Traitement.splitThatShit(text);
+    public void testTraiter_WhenBlankInput_ReturnEmptyString() {
+        assertEquals("", Traitement.traiter(null));
+    }
 
-        Assert.assertEquals(text, actual);
+    @Test
+    public void testTraiter_EvangelionRomajiSplitOptimizeAndSplitThatShit() {
+
+        String inputContent = extractFromResource("in/EvangelionOPFullRomaji.sample");
+
+        String trait = Traitement.traiter(inputContent);
+
+        String expectedContent = extractFromResource("out/EvangelionOPFullRomaji.split.optimize.sample");
+        String expectedSplitThatShit = extractFromResource("out/EvangelionOPFullRomaji.split.optimize.chorus.sample");
+
+        String actualOptimize = Traitement.optimize(trait);
+
+        assertEquals(actualOptimize, expectedContent);
+
+        String splitThatShitActual = Traitement.splitThatShit(actualOptimize);
+
+        assertEquals(splitThatShitActual, expectedSplitThatShit);
+
+    }
+
+    private String extractFromResource(String directory) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        String content = "";
+        try (InputStream inputStream = classLoader.getResourceAsStream(directory)) {
+
+            content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
     }
 
 }
