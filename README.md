@@ -33,3 +33,6 @@ I've added gradle to the project to ease the build process. Make sure you have a
 The executable jar will be created under `build/libs`
 
 [![Rod Fetalvero's DEV Profile](https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg)](https://dev.to/nyorja)
+<a href="https://dev.to/nyorja">
+  <img src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg" alt="Rod Fetalvero's DEV Profile" height="30" width="30">
+</a>
