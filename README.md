@@ -31,3 +31,5 @@ I've added gradle to the project to ease the build process. Make sure you have a
 ./gradlew build
 ```
 The executable jar will be created under `build/libs`
+
+[![Rod Fetalvero's DEV Profile](https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg)](https://dev.to/nyorja)
